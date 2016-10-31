@@ -17,6 +17,10 @@ public class StudentController {
 	@Autowired
 	private StudentService studentService;
 	
+	/**
+	 * 我修改了login2方法，啦啦啦
+	 * @return
+	 */
 	@RequestMapping(value="/login",method=RequestMethod.GET)
 	public String login2(){
 		
