@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.nuc.ssm.dao.MbGoodsMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.nuc.ssm.entity.MbGoods">
+    <id column="number" jdbcType="INTEGER" property="number" />
+    <result column="gid" jdbcType="INTEGER" property="gid" />
+    <result column="gname" jdbcType="VARCHAR" property="gname" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    number, gid, gname, price, inventory, message
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mb_goods
+    where number = #{number,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mb_goods
+    where number = #{number,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.edu.nuc.ssm.entity.MbGoods">
+    insert into mb_goods (number, gid, gname, 
+      price, inventory, message
+      )
+    values (#{number,jdbcType=INTEGER}, #{gid,jdbcType=INTEGER}, #{gname,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DOUBLE}, #{inventory,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.nuc.ssm.entity.MbGoods">
+    insert into mb_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        number,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="gname != null">
+        gname,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="message != null">
+        message,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="gname != null">
+        #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        #{message,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.edu.nuc.ssm.entity.MbGoods">
+    update mb_goods
+    <set>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=INTEGER},
+      </if>
+      <if test="gname != null">
+        gname = #{gname,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="message != null">
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where number = #{number,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.edu.nuc.ssm.entity.MbGoods">
+    update mb_goods
+    set gid = #{gid,jdbcType=INTEGER},
+      gname = #{gname,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      inventory = #{inventory,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR}
+    where number = #{number,jdbcType=INTEGER}
+  </update>
+</mapper>
